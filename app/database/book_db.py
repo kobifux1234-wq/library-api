@@ -41,13 +41,15 @@ class BookDB(ConnectionMySql):
             is_available = val.lower()=="return"
             self.cursor.execute("SELECT borrowed_by_member_id FROM books WHERE id = %s",(id,))
             result=self.cursor.fetchone()
+            print(result)
             if not result:
                 return False
             if result[0] is not None:
                 result=int(result[0])
+            else: result=result[0]
             
             if is_available:
-                if result == member_id:
+                if result == int(member_id):
                     self.cursor.execute("UPDATE books SET is_available =%s,borrowed_by_member_id=NULL WHERE id=%s",(True,id))
                 else:
                     return False
@@ -57,6 +59,7 @@ class BookDB(ConnectionMySql):
                 else:
                     return False
             self.conn.commit()
+            logger.info("set value succeed")
                 
         except:return False
         return True

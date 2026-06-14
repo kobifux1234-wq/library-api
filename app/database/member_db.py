@@ -7,8 +7,8 @@ class MemberDB(ConnectionMySql):
     def create_member(self,data):
         key=", ".join(data.keys())
         placeholders = ", ".join(["%s"]*len(data))
-        sql=f"INSERT INTO members({key}) VALUES {placeholders}"
-        self.cursor.execute(sql,data.values())
+        sql=f"INSERT INTO members({key}) VALUES ({placeholders})"
+        self.cursor.execute(sql,list(data.values()))
         self.conn.commit()
         logger.info("new member is created")
         return self.cursor.lastrowid > 0
@@ -17,7 +17,7 @@ class MemberDB(ConnectionMySql):
         dict_cursor=self.conn.cursor(dictionary=True)
         try:
             dict_cursor.execute("SELECT * FROM members")
-            return self.cursor.fetchall()
+            return dict_cursor.fetchall()
         finally:dict_cursor.close()
     
     def get_member_by_id(self,id):

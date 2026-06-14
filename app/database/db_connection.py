@@ -9,8 +9,6 @@ def get_connection():
         port=3306,
         database="library_db"
         )
-    
-
 class ConnectionMySql:
     def __init__(self):
         self.conn= get_connection()
