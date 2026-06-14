@@ -1,0 +1,35 @@
+2026-06-14 20:12:44,978 | DEBUG | Using selector: SelectSelector
+2026-06-14 20:22:13,278 | DEBUG | Using selector: SelectSelector
+2026-06-14 20:27:55,185 | DEBUG | Using selector: SelectSelector
+2026-06-14 20:29:04,399 | DEBUG | Using selector: SelectSelector
+2026-06-14 20:29:50,667 | DEBUG | Using selector: SelectSelector
+2026-06-14 20:32:10,207 | DEBUG | Using selector: SelectSelector
+2026-06-14 20:32:40,864 | INFO | start in creating new member
+2026-06-14 20:48:04,138 | DEBUG | Using selector: SelectSelector
+2026-06-14 20:48:31,974 | INFO | start in creating new member
+2026-06-14 20:55:02,263 | DEBUG | Using selector: SelectSelector
+2026-06-14 20:55:24,097 | DEBUG | Using selector: SelectSelector
+2026-06-14 20:55:31,158 | INFO | start in creating new member
+2026-06-14 20:58:26,277 | DEBUG | Using selector: SelectSelector
+2026-06-14 20:58:48,847 | INFO | start in creating new member
+2026-06-14 21:02:45,652 | DEBUG | Using selector: SelectSelector
+2026-06-14 21:02:48,596 | INFO | start in creating new member
+2026-06-14 21:04:35,662 | DEBUG | Using selector: SelectSelector
+2026-06-14 21:04:41,358 | INFO | start in creating new member
+2026-06-14 21:06:08,829 | DEBUG | Using selector: SelectSelector
+2026-06-14 21:06:27,504 | INFO | start in creating new member
+2026-06-14 21:06:27,560 | INFO | new member is created
+2026-06-14 21:06:27,561 | INFO | Member created
+2026-06-14 21:06:38,162 | DEBUG | Using selector: SelectSelector
+2026-06-14 21:28:14,713 | INFO | start in creating new member
+2026-06-14 21:29:20,396 | DEBUG | Using selector: SelectSelector
+2026-06-14 21:29:24,150 | INFO | start in creating new member
+2026-06-14 21:32:49,458 | INFO | get all members
+2026-06-14 21:33:53,278 | INFO | start in creating new member
+2026-06-14 21:33:53,314 | INFO | new member is created
+2026-06-14 21:33:53,315 | INFO | Member created
+2026-06-14 21:34:10,951 | INFO | get all members
+2026-06-14 21:34:48,718 | INFO | updating id: 1
+2026-06-14 21:34:48,753 | INFO | updated member
+2026-06-14 21:34:48,754 | INFO | update member succeed
+2026-06-14 21:35:01,148 | INFO | get all members

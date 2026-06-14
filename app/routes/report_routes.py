@@ -1,6 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter,HTTPException
 from database.book_db import BookDB
 from database.member_db import MemberDB
+import logging
+
+logger=logging.getLogger(__name__)
 
 report_router=APIRouter()
 
@@ -39,4 +42,8 @@ def get_by_genre():
 def top_member():
     member_data=MemberDB()
     top=member_data.get_top_member()
-    return top
+    if not top:
+        logger.warning("Cant show top member in clear database")
+        raise HTTPException("Cant found any user")
+    
+    return {"member_id": top[0], "borrowed":top[4]}

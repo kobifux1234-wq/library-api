@@ -1,5 +1,5 @@
 from fastapi import APIRouter,HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel,EmailStr
 from database.member_db import MemberDB
 import logging
 
@@ -7,26 +7,30 @@ logger = logging.getLogger(__name__)
 
 class CreateMember(BaseModel):
     name:str
-    email:str
-    total_borrows:int = 0
+    email:EmailStr
 
 class UpdateMember(BaseModel):
     name:str|None=None
-    email:str |None=None
+    email:EmailStr |None=None
 member_router=APIRouter()
 
 @member_router.post("")
 def create_member(data:CreateMember):
-    logger.info("start in creating new member")
-    member_db=MemberDB()
-    row = member_db.create_member(data.model_dump())
-    member_db.close_db()
-    if row:
-        logger.info("Member created")
-        return{"message":"Member created"}
-    else: 
-        logger.warning("Adding new member failed")
-        return {"message":"Adding new member failed"}
+    try:
+        logger.info("start in creating new member")
+        member_db=MemberDB()
+        row = member_db.create_member(data.model_dump())
+        
+        if row:
+            logger.info("Member created")
+            return{"message":"Member created"}
+        else: 
+            logger.warning("Adding new member failed")
+            return {"message":"Adding new member failed"}
+    except:
+        raise HTTPException(status_code=409,detail="Cannot create this user, follow rules")
+    finally:member_db.close_db()
+        
     
 @member_router.get("")
 def all_members():
@@ -76,7 +80,7 @@ def deactivate_member(id):
 
 
 @member_router.patch("/{id}/activate")
-def deactivate_member(id):
+def activate_member(id):
     logger.info(f"activate id: {id}")
     member_bd=MemberDB()
     changed=member_bd.activate_member(id)

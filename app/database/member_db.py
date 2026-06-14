@@ -5,13 +5,17 @@ logger =logging.getLogger(__name__)
     
 class MemberDB(ConnectionMySql):
     def create_member(self,data):
-        key=", ".join(data.keys())
-        placeholders = ", ".join(["%s"]*len(data))
-        sql=f"INSERT INTO members({key}) VALUES ({placeholders})"
-        self.cursor.execute(sql,list(data.values()))
-        self.conn.commit()
-        logger.info("new member is created")
-        return self.cursor.lastrowid > 0
+        try:
+            print(data)
+            key=", ".join(data.keys())
+            placeholders = ", ".join(["%s"]*len(data))
+            sql=f"INSERT INTO members({key}) VALUES ({placeholders})"
+            self.cursor.execute(sql,list(data.values()))
+            self.conn.commit()
+            logger.info("new member is created")
+            return self.cursor.lastrowid > 0
+        except:
+            raise ValueError
     
     def get_all_members(self):
         dict_cursor=self.conn.cursor(dictionary=True)

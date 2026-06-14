@@ -37,7 +37,7 @@ def create_tables():
         name VARCHAR(50) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         is_active BOOLEAN DEFAULT True,
-        total_borrows INT NOT NULL
+        total_borrows INT DEFAULT 0
     )   
     """)
     conn.commit()

@@ -11,7 +11,7 @@ book_router=APIRouter()
 class CreateBook(BaseModel):
     title:str
     author:str
-    genre:Literal["Fiction","Non-Fiction","Science","History","Other"]="Enter genre"
+    genre:Literal["Fiction","Non-Fiction","Science","History","Other"]
     
 class UpdateBook(BaseModel):
     title:str | None=None
@@ -24,6 +24,7 @@ def create_book(data:CreateBook):
     logger.info(f"create new book {data.model_dump()}")
     book_db=BookDB()
     row=book_db.create_book(data.model_dump())
+    print(data.model_dump())
     book_db.close_db()
     logger.info("the book created")
     if row: return {"message": 'book created in success'}
@@ -93,7 +94,7 @@ def borrow_book(id,member_id):
     return {"message":"The borrow succeed"}
 
 @book_router.put("/{id}/return/{member_id}")
-def borrow_book(id,member_id):
+def return_book(id,member_id):
     logger.info(f"return book {id} by {member_id}")
     book_db=BookDB()
     member_db=MemberDB()

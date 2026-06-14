@@ -6,15 +6,18 @@ logger= logging.getLogger(__name__)
 class BookDB(ConnectionMySql):
         
     def create_book(self,data):
-        key=", ".join(data.keys())
-        places_holder= ", ".join(["%s"]*len(data))
-        value=list(data.values())
-        
-        sql=f"INSERT INTO books({key}) VALUES ({places_holder})"
-        self.cursor.execute(sql,value)
-        logger.info("creating new book in sql")
-        self.conn.commit()
-        return self.cursor.lastrowid >0
+        try:
+            key=", ".join(data.keys())
+            places_holder= ", ".join(["%s"]*len(data))
+            value=list(data.values())
+            
+            sql=f"INSERT INTO books({key}) VALUES ({places_holder})"
+            self.cursor.execute(sql,value)
+            logger.info("creating new book in sql")
+            self.conn.commit()
+            return self.cursor.lastrowid >0
+        except:
+            raise ValueError
         
     
     def get_all_books(self):
